@@ -1,0 +1,293 @@
+<!DOCTYPE>  <!-- by RLJ Fede -->
+<html>
+<head>
+<script type="text/javascript" language="Javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<title>Proxy Provisioning Toolbox</title>
+
+<script type="text/javascript">
+
+function concatenate(){
+	var e = document.getElementById("https");
+	var f = document.getElementById("event");
+		
+	document.getElementById('butCode').innerText =
+		"RTKpartONE var rl_img= new Image(1,1); rl_img.src = '//search.rtrk.jp/event/?event=" + f.options[f.selectedIndex].value + "&options=fname%3D" + e.options[e.selectedIndex].value + "%253A//" +
+		document.getElementById('cvtName').value + "%26idpagecvt%3D" + document.getElementById('cvtId').value + "&dom=" + document.getElementById('prDom').value + "';  RTKpartTWO";
+
+	document.getElementById('pixCode').innerText =
+		'<img src="//search.rtrk.jp/event/?event=' + f.options[f.selectedIndex].value + '&options=fname%3D' + e.options[e.selectedIndex].value + "%253A//" +
+		document.getElementById('cvtName').value + "%26idpagecvt%3D" + document.getElementById('cvtId').value + "&dom=" + document.getElementById('prDom').value + '" ' + 'border="0" width="1" height="1">';
+		
+	}
+	
+	
+	
+function image_path(){
+
+$('#new_path').text("");
+$("#img_container > input").each(function(){
+	var new_src = $(this).val().substr(30);
+	$('#new_path').append('src="//rtsys.rtrk.jp' + new_src + '"' + '<br />');
+
+});
+
+}
+
+</script>
+
+
+<style>
+
+body {
+	font-family:Tahoma;
+	background:#F8F8F8;
+	font-size:1.5em;
+	height: 1000px;
+	
+	
+}
+.original{
+	background-color: #A5C663;
+	color: white;
+	
+}
+
+.replacement{
+	background-color: #567714;
+	color: white;
+	
+}
+
+.block label {
+	display: inline-block; width: 140px; text-align: right; padding:1px;
+}
+
+input[type=text]:focus, input[type=select]:focus {
+	background-color: #D4EE9F;
+}
+
+input[type=text]{
+	padding:2px;
+	margin:2px;
+}
+
+.tabs {
+  position: relative;   
+  min-height: 200px; /* This part sucks */
+  height:100%;
+  clear: both;
+  margin: 25px 0;
+}
+
+
+input[type=button] {
+	font-family:Tahoma;
+	background: #D46A6A;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+	border-radius: 15px;
+	margin:30px;
+}
+
+input[type=button]:hover {
+    background: #AA3939;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+
+.tab {
+  float: left;
+  
+}
+
+#new_path {
+	background: #eee; 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	
+}
+
+.tab .hd {
+  background: #eee; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc; 
+
+}
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .content {
+  z-index: 1;
+}
+
+#logo
+{
+	width:210px;
+	height:44px;
+	background-image:url(https://admin.reachlocal.co.jp/admin/images/rl_logo.gif);
+	background-repeat:no-repeat;
+	padding-left:210px;
+	font-size:1.3em;
+}
+
+#update {
+	float:right;
+}
+
+#img_container {
+	width: 600;	
+	position:relative;
+	
+}
+
+#img_container > input[type=text] {
+	width: 500;
+}
+
+#duplicate{
+
+margin-left:510px;
+margin-top:-50px;
+margin-bottom:-30px;
+
+}
+
+
+</style>
+</head>
+
+<body>
+<div id="logo">&nbsp; Toolbox v.1.1</div>
+<span id="update">Last update: Aug 27, 2015.</span>
+
+<div class="tabs">
+    
+	 <div class="tab">
+       <input type="radio" id="tab-1" name="tab-group-1" checked> 
+       <label for="tab-1" class="hd">Images</label>
+       
+       <div class="content">
+			<h3>Image replacement tool</h3>
+			 
+			 <input id="duplicate" type="button" onclick="duplicate();" value="+"><br/>
+			 <div id="img_container">
+				 <input type="text" id="original_path" placeholder="Original url"><br/>
+				 <input type="text" id="original_path01" placeholder="Original url"><br/>
+				 <input type="text" id="original_path02" placeholder="Original url"><br/>	 
+			</div>
+			<input type="button" onclick="image_path();" value="GENERATE"><br/><br/><br/>
+			<div id="new_path"></div>
+			
+		
+			
+			
+			
+			
+       </div> 
+   </div>
+	
+   <div class="tab">
+       <input type="radio" id="tab-2" name="tab-group-1">
+       <label for="tab-2" class="hd">Pixel</label>
+       
+       <div class="content">
+       <h3>Tracking Pixel</h3>    
+		
+
+				<div class="block">
+					<label>CVT Name:</label> <input type="text" placeholder="adelinoalves.com.br/RL_CVT_BPCSub" id="cvtName" size="50"><br/>
+				</div>
+
+				<div class="block">
+					<label>CVT ID:</label> <input type="text" placeholder="242454" id="cvtId" size="50"><br/>
+				</div>
+
+								
+				<div class="block">
+					<label>Http/Https</label>
+						<select id="https">
+							<option value="http">http:</option>
+							<option value="https">https:</option>
+						</select>
+				</div>
+
+		<div class="block">
+			<label>Proxy dom:</label> <input type="text" placeholder="px.rtrk.com.br" id="prDom" size="50"><br/>
+		</div>
+		
+				<div class="block">
+					<label>Event</label>
+						<select id="event">
+							<option value="8">8 (High)</option>
+							<option value="7">7 (Low)</option>
+						</select>
+				</div>
+				
+		<input type="button" onclick="concatenate();" value="GENERATE"><br/>
+
+			
+
+			<span>Pixel code:</span><br/>
+			<div class="replacement" id="pixCode">&nbsp;</div>
+			<br/>
+			<hr>
+			<br/>
+			<span>Onclick code:</span><br/>
+			<span class="original">input type= ...   </span><br/>
+			<span class="replacement">input type= ... onclick="REACHTEMP"</span><br/><br/>
+
+			<span class="original">REACHTEMP </span><br>
+			<div class="replacement" id="butCode">&nbsp;</div>
+			<br/>
+
+			<span class="original">RTKpartONE </span><br/>
+			<span class="replacement">var ElementInterval = setInterval(function (){</span><br/><br/>
+			 
+			<span class="original">RTKpartTWO </span><br/>
+			<span class="replacement">clearInterval(ElementInterval);},0);return true;</span><br/><br/>
+
+
+       </div> 
+ </div>
+     
+	 
+	
+</div>
+
+<script>
+	
+var i = 0;
+var original = document.getElementById('original_path');
+
+function duplicate() {
+	var clone = original.cloneNode(true); // "deep" clone
+    clone.id = "original_path" + ++i;
+	
+    original.parentNode.appendChild(clone);
+	
+}
+</script>
+</body>
+</html>
